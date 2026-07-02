@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Business English: Lesson 1</title>
+    <style>
+        :root {
+            --bg-color: #f2f2f7;
+            --surface-color: #ffffff;
+            --primary-color: #007aff;
+            --text-main: #1c1c1e;
+            --text-sec: #8e8e93;
+            --success: #34c759;
+            --danger: #ff3b30;
+            --border: #e5e5ea;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .screen {
+            display: none;
+            min-height: 100vh;
+            width: 100vw;
+            padding: 20px;
+            padding-bottom: 100px;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Top Navigation & Custom Header */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        .back-btn svg { width: 20px; height: 20px; margin-right: 5px; fill: currentColor; }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .course-header h4 {
+            color: var(--text-sec);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .course-header h5 {
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .student-badge {
+            display: inline-block;
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+        h2 { font-size: 22px; font-weight: 600; margin: 24px 0 12px 0; color: var(--primary-color); }
+        h3 { font-size: 18px; font-weight: 600; margin: 20px 0 10px 0; }
+        
+        p { font-size: 16px; margin-bottom: 16px; color: var(--text-main); text-align: justify; }
+
+        /* Cards */
+        .card {
+            background-color: var(--surface-color);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .highlight-box {
+            background-color: rgba(0, 122, 255, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 16px;
+            border-radius: 4px 8px 8px 4px;
+            margin-bottom: 20px;
+        }
+
+        ul { list-style-type: none; margin-bottom: 16px; }
+        ul li { position: relative; padding-left: 20px; margin-bottom: 10px; }
+        ul li::before {
+            content: "•"; position: absolute; left: 0; color: var(--primary-color); font-weight: bold;
+        }
+
+        .table-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+            background: var(--bg-color); padding: 12px; border-radius: 8px; margin-bottom: 20px;
+        }
+        .table-grid > div {
+            background: var(--surface-color); padding: 12px; border-radius: 6px;
+            font-size: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .table-grid strong { display: block; color: var(--primary-color); margin-bottom: 4px; }
+
+        /* Floating Action Button */
+        .fab-container {
+            position: fixed; bottom: 20px; left: 0; width: 100%; padding: 0 20px; z-index: 100;
+        }
+        .btn-primary {
+            display: flex; align-items: center; justify-content: center; width: 100%;
+            background-color: var(--primary-color); color: white; border: none; padding: 16px;
+            font-size: 18px; font-weight: 600; border-radius: 100px;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4); cursor: pointer; transition: transform 0.1s;
+        }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary svg { width: 24px; height: 24px; margin-right: 10px; fill: currentColor; }
+
+        /* Practice Menu */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+        .menu-btn {
+            background-color: var(--surface-color); border: none; border-radius: var(--radius);
+            padding: 30px 15px; display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s;
+        }
+        .menu-btn:active { transform: scale(0.95); }
+        .menu-btn svg { width: 48px; height: 48px; margin-bottom: 16px; fill: var(--primary-color); }
+        .menu-btn span { font-size: 16px; font-weight: 600; color: var(--text-main); }
+
+        /* Flex Buttons */
+        .btn-group { display: flex; gap: 12px; margin-top: 20px; }
+        .btn-secondary { background-color: var(--text-sec); box-shadow: 0 4px 15px rgba(142, 142, 147, 0.4); }
+
+        /* Inputs & UI elements */
+        input[type="text"] {
+            width: 100%; padding: 16px; font-size: 16px; border: 1px solid var(--border);
+            border-radius: 12px; margin-top: 10px; outline: none; transition: border 0.2s;
+        }
+        input[type="text"]:focus { border-color: var(--primary-color); }
+        .feedback { text-align: center; margin-top: 15px; font-weight: bold; font-size: 18px; min-height: 27px;}
+
+        /* Mics & Listen */
+        .media-btn {
+            background-color: var(--primary-color); border: none; border-radius: 50%;
+            width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;
+            margin: 40px auto; color: white; box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3); cursor: pointer;
+        }
+        .media-btn svg { width: 36px; height: 36px; fill: currentColor; }
+        .media-btn.recording { background-color: var(--danger); animation: pulse 1.5s infinite; }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(255, 59, 48, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+        }
+        .target-phrase { font-size: 24px; font-weight: 700; text-align: center; margin: 20px 0; }
+        .result-text { font-size: 18px; text-align: center; margin-top: 20px; min-height: 30px; color: var(--text-sec); }
+
+        /* Flash Cards */
+        #flash-container {
+            position: relative; width: 100%; height: 60vh; display: flex;
+            align-items: center; justify-content: center; perspective: 1000px;
+        }
+        .flash-card {
+            position: absolute; width: 100%; max-width: 350px; height: 400px; background: var(--surface-color);
+            border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 30px; text-align: center;
+            transition: transform 0.3s ease, opacity 0.3s ease; user-select: none; touch-action: none; z-index: 2;
+        }
+        .flash-question { font-size: 24px; font-weight: 700; margin-bottom: 40px; }
+        .flash-options { display: flex; justify-content: space-between; width: 100%; }
+        .flash-opt { font-size: 18px; font-weight: 600; color: var(--text-sec); }
+        .flash-instruction { position: absolute; bottom: 20px; font-size: 14px; color: var(--text-sec); }
+        .swipe-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+            opacity: 0; transition: opacity 0.3s ease; z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="screen-main" class="screen active">
+        
+        <header class="course-header">
+            <h4>Business English</h4>
+            <h5>Com o instrutor <strong>Matheus Machado</strong></h5>
+            <div class="student-badge">
+                Trilha de estudos personalizada para <strong>Caio Gomes</strong>
+            </div>
+        </header>
+
+        <p>Bem-vindo ao seu primeiro passo no <em>Business English</em>, Caio. A comunicação no ambiente de trabalho exige clareza e profissionalismo. Hoje, vamos construir a sua base. Entenderemos como nos apresentar corretamente, como descrever nosso ambiente e ferramentas de trabalho, e como expressar a nossa rotina profissional.</p>
+
+        <div class="card">
+            <h2>1. Introductions & Greetings (Apresentações)</h2>
+            <p>A primeira impressão dita o tom de qualquer relação comercial. No inglês, a forma como você cumprimenta um colega de equipe é diferente da forma como você aborda um cliente novo ou um diretor.</p>
+            <p>Em ambientes informais ou no trato diário com colegas de setor, optamos por saudações rápidas e acolhedoras. Já em reuniões, negociações ou no primeiro contato com a gerência, a formalidade demonstra respeito e preparo.</p>
+            
+            <div class="highlight-box">
+                <strong>Informal / Daily (Dia a dia):</strong>
+                <ul>
+                    <li><strong>Hi! / Hello!</strong> (Oi / Olá)</li>
+                    <li><strong>How are you?</strong> (Como você está?)</li>
+                    <li><strong>I'm fine, thanks. And you?</strong> (Estou bem, obrigado. E você?)</li>
+                </ul>
+            </div>
+            <div class="highlight-box">
+                <strong>Business / Formal (Profissional):</strong>
+                <ul>
+                    <li><strong>Good morning / Good afternoon.</strong> (Bom dia / Boa tarde)</li>
+                    <li><strong>Nice to meet you.</strong> (Prazer em conhecer)</li>
+                    <li><strong>How do you do?</strong> (Muito formal, usado em encontros executivos)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. The Verb "To Be" (Ser / Estar)</h2>
+            <p>O verbo <em>To Be</em> é a âncora do idioma inglês. Ele define identidade (quem nós somos, nossos cargos) e estado ou localização (como estamos, onde estamos). Sem ele, não conseguimos dizer nosso nome, nossa profissão ou onde um documento está guardado.</p>
+            
+            <div class="table-grid">
+                <div><strong>I am</strong> (I'm)<br>Eu sou / estou</div>
+                <div><strong>You are</strong> (You're)<br>Você é / está</div>
+                <div><strong>He is</strong> (He's)<br>Ele é / está</div>
+                <div><strong>She is</strong> (She's)<br>Ela é / está</div>
+                <div><strong>We are</strong> (We're)<br>Nós somos / estamos</div>
+                <div><strong>They are</strong> (They're)<br>Eles/Elas são / estão</div>
+            </div>
+
+            <h3>O Uso Estratégico do "IT" e "THIS"</h3>
+            <p>No ambiente de varejo ou corporativo, você não lida apenas com pessoas. Você lida constantemente com produtos físicos, sistemas operacionais, notas fiscais e equipamentos. É aqui que o <strong>IT</strong> (ele/ela para coisas) e o <strong>THIS</strong> (este/esta) entram em ação de forma vital.</p>
+            <ul>
+                <li><em>Onde está a nota fiscal?</em> <strong>It is</strong> on the desk. (Ela está na mesa).</li>
+                <li><em>O scanner do caixa parou?</em> <strong>It is</strong> broken. (Ele está quebrado).</li>
+                <li><em>Apresentando um produto ao cliente:</em> <strong>This is</strong> our new smartphone. (Este é o nosso novo smartphone).</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>3. Simple Present (Rotina Profissional)</h2>
+            <p>O mundo dos negócios é feito de rotinas. O <em>Simple Present</em> é o tempo verbal que usamos para descrever fatos imutáveis e ações habituais: abrir a loja, processar pagamentos, checar o estoque.</p>
+            <ul>
+                <li><strong>I work</strong> every day. (Eu trabalho todos os dias.)</li>
+                <li><strong>You check</strong> the system. (Você checa o sistema.)</li>
+                <li><strong>They buy</strong> products here. (Eles compram produtos aqui.)</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <strong>⚠️ THE GOLDEN RULE (A Regra de Ouro)</strong><br><br>
+                Sempre que formos falar de uma terceira pessoa do singular — <strong>He</strong> (ele), <strong>She</strong> (ela) ou <strong>It</strong> (a coisa/o sistema) —, o verbo obrigatoriamente ganha um <strong>-S</strong> ou <strong>-ES</strong> no final. 
+                <br><br>
+                <em>Examples in Action:</em>
+                <ul>
+                    <li>The manager <strong>works</strong> hard. (O gerente trabalha duro - <em>He/She</em>)</li>
+                    <li>The checkout system <strong>processes</strong> the data. (O sistema do caixa processa os dados - <em>It</em>)</li>
+                    <li>She <strong>speaks</strong> English with the customer. (Ela fala inglês com o cliente - <em>She</em>)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Roleplay Simulation</h2>
+            <p><em>Prática guiada: Vamos simular um diálogo real de primeiro dia de trabalho. Eu serei a pessoa A, você será a B. Depois, invertemos os papéis.</em></p>
+            <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                <p><strong>A:</strong> Good morning. Are you the new manager?</p>
+                <p><strong>B:</strong> Hello! No, I am the sales assistant. My name is Caio. Nice to meet you.</p>
+                <p><strong>A:</strong> Nice to meet you too, Caio. Is this the new inventory report?</p>
+                <p><strong>B:</strong> Yes, it is. The system updates it every morning.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>5. Vocabulary & Business Dictionary</h2>
+            <p>Abaixo, os termos essenciais da nossa aula de hoje. Consulte-os sempre que precisar expandir seu vocabulário ativo.</p>
+            <div class="table-grid">
+                <div><strong>Customer:</strong> Cliente</div>
+                <div><strong>Employee:</strong> Funcionário</div>
+                <div><strong>Manager:</strong> Gerente</div>
+                <div><strong>Meeting:</strong> Reunião</div>
+                <div><strong>Stock / Inventory:</strong> Estoque</div>
+                <div><strong>Invoice / Receipt:</strong> Nota Fiscal</div>
+                <div><strong>Checkout:</strong> Caixa / Finalização</div>
+                <div><strong>Schedule:</strong> Horário / Agenda</div>
+                <div><strong>Equipment:</strong> Equipamento</div>
+                <div><strong>Headquarters:</strong> Matriz / Sede</div>
+            </div>
+        </div>
+
+        <div class="fab-container">
+            <button class="btn-primary" onclick="showScreen('screen-menu')">
+                <svg viewBox="0 0 24 24"><path d="M12 2L22 12L12 22L10.6 20.6L18.2 13H2V11H18.2L10.6 3.4L12 2Z"/></svg>
+                Start Practicing
+            </button>
+        </div>
+    </div>
+
+
+    <div id="screen-menu" class="screen hidden">
+        <div class="top-nav">
+            <button class="back-btn" onclick="showScreen('screen-main')">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg> Back to Lesson
+            </button>
+        </div>
+        <h1>Practice Zone</h1>
+        <p>Choose your training mode to consolidate today's learning.</p>
+
+        <div class="menu-grid">
+            <button class="menu-btn" onclick="initPenAndPaper()">
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                <span>Pen and Paper</span>
+            </button>
+            <button class="menu-btn" onclick="initMic()">
+                <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+                <span>Mic on</span>
+            </button>
+            <button class="menu-btn" onclick="initListen()">
+                <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                <span>Listen it</span>
+            </button>
+            <button class="menu-btn" onclick="initFlashCards()">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12zM6 10h12v2H6zm0 4h8v2H6z"/></svg>
+                <span>Flash Cards</span>
+            </button>
+        </div>
+    </div>
+
+
+    <div id="screen-pen" class="screen hidden">
+        <div class="top-nav">
+            <button class="back-btn" onclick="showScreen('screen-menu')">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg> Menu
+            </button>
+        </div>
+        <h1>Pen & Paper</h1>
+        <p>Type the correct missing word (Focus: Verb to Be / Simple Present rule).</p>
+
+        <div class="card" id="pen-container">
+            <h3 id="pen-question"></h3>
+            <input type="text" id="pen-input" placeholder="Type here..." autocomplete="off">
+            <div id="pen-feedback" class="feedback"></div>
+            
+            <div class="btn-group">
+                <button class="btn-primary" onclick="checkPen()">Check Answer</button>
+                <button class="btn-primary btn-secondary" onclick="initPenAndPaper()">Next Phrase</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="screen-mic" class="screen hidden">
+        <div class="top-nav">
+            <button class="back-btn" onclick="showScreen('screen-menu')">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg> Menu
+            </button>
+        </div>
+        <h1>Mic On</h1>
+        <p>Read the phrase below aloud to practice pronunciation.</p>
+
+        <div class="card" style="text-align: center;">
+            <div class="target-phrase" id="mic-target">I am a manager.</div>
+            <button class="media-btn" id="mic-btn" onclick="toggleSpeechRecognition()">
+                <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+            </button>
+            <div class="result-text" id="mic-result">Tap the mic to start.</div>
+            <div id="mic-feedback" class="feedback"></div>
+            <button class="btn-primary btn-secondary" style="margin-top:20px;" onclick="nextMic()">Next Phrase</button>
+        </div>
+    </div>
+
+
+    <div id="screen-listen" class="screen hidden">
+        <div class="top-nav">
+            <button class="back-btn" onclick="showScreen('screen-menu')">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg> Menu
+            </button>
+        </div>
+        <h1>Listen It</h1>
+        <p>Tap to listen, then type what you hear.</p>
+
+        <div class="card" style="text-align: center;">
+            <button class="media-btn" onclick="playTTS()">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <input type="text" id="listen-input" placeholder="Type the sentence here..." autocomplete="off">
+            <div id="listen-feedback" class="feedback"></div>
+            
+            <div class="btn-group">
+                <button class="btn-primary" onclick="checkListen()">Check Answer</button>
+                <button class="btn-primary btn-secondary" onclick="nextListen()">Next Audio</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="screen-flash" class="screen hidden">
+        <div class="top-nav" style="margin-bottom: 0;">
+            <button class="back-btn" onclick="showScreen('screen-menu')">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg> Menu
+            </button>
+        </div>
+        <div style="text-align:center; margin-bottom: 10px;">
+            <h1 style="font-size:22px;">Flash Cards</h1>
+            <p>Swipe LEFT or RIGHT to answer.</p>
+        </div>
+
+        <div class="swipe-overlay" id="swipe-bg"></div>
+        
+        <div id="flash-container">
+            </div>
+    </div>
+
+    <script>
+        // Core Navigation
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            
+            // Cleanup states
+            document.getElementById('swipe-bg').style.opacity = 0;
+            if(window.speechSynthesis) window.speechSynthesis.cancel();
+        }
+
+        // Data Base for Today's Class
+        const classData = [
+            // Verb To Be
+            { q: "I ___ the new manager.", c: "am", w: "is" },
+            { q: "You ___ a great customer.", c: "are", w: "am" },
+            { q: "He ___ at the checkout.", c: "is", w: "are" },
+            { q: "It ___ a new smartphone.", c: "is", w: "are" },
+            { q: "They ___ in the meeting.", c: "are", w: "is" },
+            { q: "___ this the invoice?", c: "Is", w: "Are" },
+            // Simple Present
+            { q: "She ___ every day.", c: "works", w: "work" },
+            { q: "The system ___ the stock.", c: "checks", w: "check" },
+            { q: "I ___ English.", c: "study", w: "studies" },
+            { q: "He ___ the documents.", c: "reads", w: "read" },
+            { q: "It ___ perfectly well.", c: "operates", w: "operate" },
+            // Vocab
+            { q: "Nice to ___ you.", c: "meet", w: "meeting" },
+            { q: "The product is in the ___.", c: "stock", w: "stok" },
+            { q: "I have a ___ at 10 AM.", c: "meeting", w: "metting" },
+            { q: "Please, print the ___.", c: "invoice", w: "equipment" }
+        ];
+
+        // ================= PEN & PAPER =================
+        let penCurrent = {};
+        function initPenAndPaper() {
+            showScreen('screen-pen');
+            document.getElementById('pen-feedback').innerText = "";
+            const inputField = document.getElementById('pen-input');
+            inputField.value = "";
+            inputField.focus();
+            penCurrent = classData[Math.floor(Math.random() * classData.length)];
+            document.getElementById('pen-question').innerText = penCurrent.q.replace("___", "_______");
+        }
+        function checkPen() {
+            const input = document.getElementById('pen-input').value.trim().toLowerCase();
+            const fb = document.getElementById('pen-feedback');
+            if (input === penCurrent.c.toLowerCase()) {
+                fb.innerText = "Correct! ✅";
+                fb.style.color = "var(--success)";
+            } else {
+                fb.innerText = `Incorrect ❌ (Tip: ${penCurrent.c})`;
+                fb.style.color = "var(--danger)";
+            }
+        }
+
+        // ================= MIC ON (STT) =================
+        const micPhrases = [
+            "I am the new manager",
+            "She works every day",
+            "This is the new smartphone",
+            "Nice to meet you",
+            "The system is broken",
+            "He checks the stock",
+            "Where is the invoice"
+        ];
+        let micCurrent = "";
+        let recognition = null;
+        
+        function initMic() {
+            showScreen('screen-mic');
+            nextMic();
+            
+            // Setup Web Speech API
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+
+                recognition.onstart = function() {
+                    document.getElementById('mic-btn').classList.add('recording');
+                    document.getElementById('mic-result').innerText = "Listening...";
+                    document.getElementById('mic-feedback').innerText = "";
+                };
+
+                recognition.onresult = function(event) {
+                    const speechResult = event.results[0][0].transcript.toLowerCase();
+                    document.getElementById('mic-result').innerText = `You said: "${speechResult}"`;
+                    checkMicResult(speechResult);
+                };
+
+                recognition.onerror = function(event) {
+                    document.getElementById('mic-result').innerText = "Error recognizing speech. Try again.";
+                };
+
+                recognition.onend = function() {
+                    document.getElementById('mic-btn').classList.remove('recording');
+                };
+            } else {
+                document.getElementById('mic-result').innerText = "Speech recognition not supported. Use Chrome or Safari.";
+            }
+        }
+
+        function nextMic() {
+            micCurrent = micPhrases[Math.floor(Math.random() * micPhrases.length)];
+            document.getElementById('mic-target').innerText = micCurrent;
+            document.getElementById('mic-result').innerText = "Tap the mic to start.";
+            document.getElementById('mic-feedback').innerText = "";
+            if(recognition) document.getElementById('mic-btn').classList.remove('recording');
+        }
+
+        function toggleSpeechRecognition() {
+            if (recognition) {
+                try { recognition.start(); } catch(e) { /* already started */ }
+            }
+        }
+
+        function checkMicResult(spoken) {
+            const cleanSpoken = spoken.replace(/[.,!?]/g, "").trim();
+            const cleanTarget = micCurrent.toLowerCase().replace(/[.,!?]/g, "").trim();
+            
+            const fb = document.getElementById('mic-feedback');
+            if (cleanSpoken === cleanTarget || cleanSpoken.includes(cleanTarget) || cleanTarget.includes(cleanSpoken)) {
+                fb.innerText = "Excellent pronunciation! ✅";
+                fb.style.color = "var(--success)";
+            } else {
+                fb.innerText = "Keep practicing! ❌";
+                fb.style.color = "var(--danger)";
+            }
+        }
+
+
+        // ================= LISTEN IT (TTS) =================
+        let listenCurrent = "";
+        function initListen() {
+            showScreen('screen-listen');
+            nextListen();
+        }
+        function nextListen() {
+            listenCurrent = micPhrases[Math.floor(Math.random() * micPhrases.length)];
+            const inputField = document.getElementById('listen-input');
+            inputField.value = "";
+            document.getElementById('listen-feedback').innerText = "";
+        }
+        function playTTS() {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(listenCurrent);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85; // Slightly slower for comprehension
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        function checkListen() {
+            const input = document.getElementById('listen-input').value.trim().toLowerCase().replace(/[.,!?]/g, "");
+            const target = listenCurrent.toLowerCase().replace(/[.,!?]/g, "");
+            const fb = document.getElementById('listen-feedback');
+            
+            if (input === target) {
+                fb.innerText = "Perfect listening! ✅";
+                fb.style.color = "var(--success)";
+            } else {
+                fb.innerText = "Not quite. Try listening again. ❌";
+                fb.style.color = "var(--danger)";
+            }
+        }
+
+
+        // ================= FLASH CARDS (Tinder Swipe) =================
+        let flashPool = [];
+        let currentFlashIndex = 0;
+
+        function generate100Cards() {
+            let pool = [];
+            for (let i = 0; i < 100; i++) {
+                let template = classData[Math.floor(Math.random() * classData.length)];
+                let isLeftCorrect = Math.random() > 0.5;
+                pool.push({
+                    q: template.q,
+                    leftAns: isLeftCorrect ? template.c : template.w,
+                    rightAns: isLeftCorrect ? template.w : template.c,
+                    correctSide: isLeftCorrect ? 'left' : 'right'
+                });
+            }
+            return pool;
+        }
+
+        function initFlashCards() {
+            showScreen('screen-flash');
+            flashPool = generate100Cards();
+            currentFlashIndex = 0;
+            renderFlashCard();
+        }
+
+        function renderFlashCard() {
+            const container = document.getElementById('flash-container');
+            container.innerHTML = '';
+            
+            if (currentFlashIndex >= flashPool.length) {
+                container.innerHTML = `<h2>Training Complete!</h2><button class="btn-primary" onclick="initFlashCards()">Restart</button>`;
+                return;
+            }
+
+            const cardData = flashPool[currentFlashIndex];
+            const cardEl = document.createElement('div');
+            cardEl.className = 'flash-card';
+            cardEl.innerHTML = `
+                <div class="flash-question">${cardData.q}</div>
+                <div class="flash-options">
+                    <div class="flash-opt">&larr; ${cardData.leftAns}</div>
+                    <div class="flash-opt">${cardData.rightAns} &rarr;</div>
+                </div>
+                <div class="flash-instruction">Drag to choose</div>
+            `;
+            
+            container.appendChild(cardEl);
+            setupSwipe(cardEl, cardData.correctSide);
+        }
+
+        function setupSwipe(cardEl, correctSide) {
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+
+            // Touch events
+            cardEl.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+                cardEl.style.transition = 'none';
+            });
+
+            cardEl.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentX = e.touches[0].clientX - startX;
+                cardEl.style.transform = `translateX(${currentX}px) rotate(${currentX * 0.05}deg)`;
+            });
+
+            cardEl.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                cardEl.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                
+                const threshold = 80;
+                if (currentX < -threshold) {
+                    handleSwipeResult('left', correctSide, cardEl, -window.innerWidth);
+                } else if (currentX > threshold) {
+                    handleSwipeResult('right', correctSide, cardEl, window.innerWidth);
+                } else {
+                    cardEl.style.transform = 'translateX(0) rotate(0)';
+                }
+            });
+
+            // Mouse events for Desktop support
+            cardEl.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                isDragging = true;
+                cardEl.style.transition = 'none';
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                currentX = e.clientX - startX;
+                cardEl.style.transform = `translateX(${currentX}px) rotate(${currentX * 0.05}deg)`;
+            });
+            window.addEventListener('mouseup', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                cardEl.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                
+                const threshold = 80;
+                if (currentX < -threshold) {
+                    handleSwipeResult('left', correctSide, cardEl, -window.innerWidth);
+                } else if (currentX > threshold) {
+                    handleSwipeResult('right', correctSide, cardEl, window.innerWidth);
+                } else {
+                    cardEl.style.transform = 'translateX(0) rotate(0)';
+                }
+            });
+        }
+
+        function handleSwipeResult(swipedSide, correctSide, cardEl, flyOutX) {
+            cardEl.style.transform = `translateX(${flyOutX}px) rotate(${flyOutX * 0.05}deg)`;
+            cardEl.style.opacity = 0;
+            
+            const bg = document.getElementById('swipe-bg');
+            if (swipedSide === correctSide) {
+                bg.style.backgroundColor = 'rgba(52, 199, 89, 0.4)'; // Success green
+            } else {
+                bg.style.backgroundColor = 'rgba(255, 59, 48, 0.4)'; // Danger red
+            }
+            bg.style.opacity = 1;
+
+            setTimeout(() => {
+                bg.style.opacity = 0;
+                currentFlashIndex++;
+                renderFlashCard();
+            }, 400);
+        }
+
+    </script>
+</body>
+</html>
