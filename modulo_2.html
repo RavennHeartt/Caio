@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Business English Mastery | Lesson 02 (Premium)</title>
+    <style>
+        :root {
+            --navy: #0a192f;
+            --business-blue: #1e3a8a;
+            --accent-blue: #3b82f6;
+            --slate-600: #475569;
+            --slate-900: #0f172a;
+            --bg-corporate: #f8fafc;
+            --surface: #ffffff;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-corporate); 
+            color: var(--slate-900); 
+            line-height: 1.6; 
+        }
+
+        /* Typography */
+        h1 { font-size: 32px; font-weight: 800; color: var(--navy); letter-spacing: -1px; }
+        h2 { font-size: 20px; font-weight: 700; color: var(--business-blue); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; margin-top: 25px;}
+        h2::before { content: ''; width: 4px; height: 20px; background: var(--accent-blue); margin-right: 10px; border-radius: 2px; }
+        h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--slate-600); margin-top: 15px;}
+        p { margin-bottom: 15px; font-size: 16px; text-align: justify; }
+
+        /* Navigation */
+        .screen { display: none; min-height: 100vh; padding: 30px 20px; max-width: 800px; margin: 0 auto; animation: fadeIn 0.4s ease-out forwards; }
+        .screen.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Corporate Header */
+        .header-main { text-align: center; margin-bottom: 40px; padding: 40px 20px; background: var(--navy); color: white; border-radius: 0 0 40px 40px; margin: -30px -20px 40px -20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .header-main h4 { text-transform: uppercase; letter-spacing: 4px; font-size: 12px; opacity: 0.8; margin-bottom: 10px; }
+        .header-main h1 { color: white; margin-bottom: 5px; font-size: 28px;}
+        .header-main p { text-align: center; font-size: 14px; opacity: 0.9; }
+        .instructor-tag { font-weight: 700; color: var(--accent-blue); }
+
+        /* Components */
+        .card { background: var(--surface); border-radius: var(--radius); padding: 25px; margin-bottom: 25px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        
+        .dialogue-box { background: #f1f5f9; border-radius: 12px; padding: 20px; margin: 15px 0; border-left: 5px solid var(--navy); max-height: 500px; overflow-y: auto; }
+        .dialogue-line { margin-bottom: 12px; font-size: 15px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
+        .dialogue-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .speaker { font-weight: 800; color: var(--business-blue); text-transform: uppercase; font-size: 12px; display: block; margin-bottom: 4px; }
+        
+        .scenario-title { font-weight: 700; color: var(--navy); font-size: 16px; margin-bottom: 10px; display: block; }
+        
+        .reading-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 20px; margin: 15px 0; font-size: 16px; line-height: 1.8; color: #1c1917; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+
+        .audio-trigger { cursor: pointer; color: var(--accent-blue); margin-left: 8px; vertical-align: middle; transition: 0.2s; }
+        .audio-trigger:hover { transform: scale(1.2); }
+        .audio-trigger svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .rule-badge { display: inline-block; padding: 6px 12px; background: #e2e8f0; border-radius: 6px; font-weight: 700; font-size: 13px; margin-right: 8px; margin-bottom: 8px; }
+        
+        .btn-primary { display: flex; justify-content: center; align-items: center; width: 100%; background: var(--navy); color: white; border: none; padding: 18px; font-size: 16px; font-weight: 700; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; }
+        .btn-primary:hover { background: var(--business-blue); box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3); }
+
+        /* Training Menu */
+        .menu-dial { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .dial-item { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 30px 15px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .dial-item:hover { border-color: var(--accent-blue); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .dial-item svg { width: 40px; height: 40px; fill: var(--business-blue); margin-bottom: 15px; }
+        .dial-item span { display: block; font-weight: 700; font-size: 14px; color: var(--navy); }
+
+        /* Flashcards Tinder Style */
+        .flash-wrapper { position: relative; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .flash-card { position: absolute; width: 300px; height: 350px; background: white; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); touch-action: none; cursor: grab; z-index: 10; border: 2px solid var(--border); }
+        .flash-word { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 40px; }
+        .swipe-hint { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 15px; font-weight: 800; font-size: 14px; color: var(--business-blue); top: 50%; z-index: 1; }
+
+        /* Screen Styles for Mic/Listen */
+        .active-target { font-size: 22px; font-weight: 800; text-align: center; color: var(--business-blue); margin: 30px 0; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px dashed var(--accent-blue); }
+        .feedback-area { text-align: center; min-height: 50px; font-weight: 700; margin-top: 20px; padding: 10px; border-radius: 8px; }
+        .back-btn { background: none; border: none; color: var(--business-blue); font-size: 16px; font-weight: 700; cursor: pointer; padding: 10px 0; margin-bottom: 10px; display: flex; align-items: center; }
+        
+        /* Input Base */
+        .text-input-base { width: 100%; padding: 15px; border-radius: 10px; border: 2px solid var(--border); outline: none; font-size: 18px; text-align: center; font-family: inherit; transition: 0.3s; }
+        .text-input-base:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    </style>
+</head>
+<body>
+
+    <div id="screen-lesson" class="screen active">
+        <header class="header-main">
+            <h4>Module 02: Corporate Fluency</h4>
+            <h1>The Real World English</h1>
+            <p>Trilha Personalizada: <strong>Caio Gomes</strong></p>
+            <p>Instrutor: <span class="instructor-tag">Matheus Machado</span></p>
+        </header>
+
+        <section class="card">
+            <h2>1. Infinitivo vs. Imperativo: O Segredo do "TO"</h2>
+            <p>Por que os professores sempre falam de "To Be", "To Work"? No inglês, o <strong>TO</strong> antes do verbo funciona como o nosso <strong>-AR, -ER, -IR</strong> no português (Infinitivo). É o verbo em seu estado puro, sem ação.</p>
+            <p>Se você tirar o "To", o verbo se torna um <strong>Imperativo</strong> (uma ordem direta) ou aguarda um sujeito para o Simple Present.</p>
+            
+            <div class="highlight-box" style="background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                <p>• <strong>To sell:</strong> Vend<strong>er</strong></p>
+                <p>• <strong>Sell this car now!</strong> Venda este carro agora! (Imperativo)</p>
+                <p>• <strong>To hire:</strong> Contrat<strong>ar</strong></p>
+                <p>• <strong>Hire him!</strong> Contrate ele!</p>
+            </div>
+            
+            <h3>The Simple Present Review</h3>
+            <p>Para descrever sua rotina no trabalho, basta juntar o Sujeito + Verbo (sem o "To"). Lembre-se: He/She/It ganha o <strong>-S</strong>.</p>
+            <p>• I <strong>negotiate</strong> contracts. / He <strong>negotiates</strong> contracts.</p>
+        </section>
+
+        <section class="card">
+            <h2>2. Simple Past & O Terror do "Was / Were"</h2>
+            <p>No corporativo, você é medido pelo que entregou. Usamos o <strong>Simple Past</strong> para ações mortas e concluídas.</p>
+            
+            <h3>The Verb To Be in the Past (Ser / Estar)</h3>
+            <p>O verbo To Be no passado não usa "-ed". Ele se divide em duas formas absolutas. Decore isso para suas entrevistas:</p>
+            <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p><strong>WAS (Era / Estava / Foi):</strong> Singular total.</p>
+                <p>• I / He / She / It <strong>WAS</strong>.</p>
+                <p><em>Ex: I was at the meeting. / The interview was great.</em></p>
+                <hr style="border-top: 1px solid #cbd5e1; margin: 10px 0;">
+                <p><strong>WERE (Eram / Estavam / Fomos):</strong> Plural e o "Você".</p>
+                <p>• You / We / They <strong>WERE</strong>.</p>
+                <p><em>Ex: We were ready. / You were hired.</em></p>
+            </div>
+
+            <h3>Action Verbs (Regulars & Rebels)</h3>
+            <p><strong>Regulars (-ED):</strong> Finish &rarr; Finished | Approve &rarr; Approved.</p>
+            <p><strong>Irregulars (Mudam a forma):</strong> Have &rarr; Had | Go &rarr; Went | Meet &rarr; Met.</p>
+        </section>
+
+        <section class="card">
+            <h2>3. Reading Challenge: The Corporate Report</h2>
+            <p><em>Leia o texto abaixo. Identifique quais ações são rotina (Present) e quais já aconteceram (Past). Preste atenção aos cognatos.</em></p>
+            <div class="reading-box">
+                The global department <strong>manages</strong> a complex operation. Every morning, the system <strong>processes</strong> thousands of data points automatically. However, yesterday, the main server <strong>failed</strong>. The executive director <strong>was</strong> furious. Caio <strong>contacted</strong> the engineering team immediately. They <strong>were</strong> in a meeting, but they <strong>solved</strong> the critical issue in ten minutes. Today, the platform <strong>works</strong> perfectly again and the client <strong>needs</strong> the final report. We <strong>have</strong> a great team!
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>4. Real World Roleplays (Exhaustive Practice)</h2>
+            <p><em>Intercale os papéis com o professor. Leia com entonação profissional. O objetivo aqui é volume e resistência.</em></p>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 1: The HR Hallway (Post-Interview)</span>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Hey Caio! Over here! Did you finish your interview?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Matheus! Yes, I just finished. It was intense."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "How was the HR manager? Was she difficult?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "No, she was very professional. She asked about my past experience."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "And what did you say?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "I explained that I managed a team of five people last year."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "That is perfect! They need leadership. Did they offer the job?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes! They offered the coordinator position. I accepted immediately."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Congratulations! We are officially colleagues now."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Thank you! I am very excited. We need to celebrate later."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 2: Lunchtime at the Cafeteria</span>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Is this seat taken?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "No, sit down! How is your first week going?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "It is busy. I organize my tasks in the morning and review reports in the afternoon."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Did you meet the IT director yesterday?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes, I met him. We had a long conversation about the software."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "He is very strict. What did he say?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "He said the system was slow. So, I analyzed the code and found the problem."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Did you fix it already?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes, I deployed the solution this morning."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Wow. You are fast. This food is terrible, by the way."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "I agree. Tomorrow we buy food outside!"</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 3: Sales Growth Meeting</span>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Welcome everyone. Caio, can you present the numbers for Q3?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Of course. Last quarter, we changed our approach. The results were excellent."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Show us the data. Did we hit the target?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes. We surpassed the target by 15%. The new strategy worked."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Why did sales increase so much in September?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "We launched the new campaign, and the marketing team was aggressive on social media."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Did the clients respond well to the pricing?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes, they loved the discount. We sold 500 units in one week."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Fantastic job. I want this replicated for Q4."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Understood. I will prepare the new projections by tomorrow."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 4: Boss's Office (Marketing Shift)</span>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Matheus, do you have a minute?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Come in, Caio. What is on your mind?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "I reviewed the marketing flow yesterday. I noticed a big bottleneck."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Really? Where is the problem?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "The designers wait too long for the copywriters. The process was very slow last month."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "What do you suggest?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "To implement a parallel system. They work at the same time using a cloud document."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Did you test this idea?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes, I tested it with a small team last Friday. Efficiency increased by 30%."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "I like it. You have my approval. Change the protocol today."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Thank you. I will send the email right now."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 5: High-End Car Negotiation</span>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Good afternoon, sir. Welcome to the dealership. How can I help you?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Good afternoon. I am looking for a sports car. I saw the V8 model online."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Excellent choice. That car is a beast. Did you drive a V8 before?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Yes, I had a Mustang two years ago, but I sold it."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "I understand. Our new model has 500 horsepower. It goes from 0 to 100 in 3.5 seconds."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "That is impressive. How was the safety rating in the last test?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "It was five stars. The engineers improved the braking system completely."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "What about the price? The website price was a bit high."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "To be honest, the market changed. But if we close the deal today, I can offer a 5% discount and free insurance for a year."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Can we do a test drive first?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Of course. Let me grab the keys. Follow me."</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>5. Executive Dictionary (Self-Study)</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <div class="rule-badge">Bottleneck: Gargalo</div>
+                <div class="rule-badge">Deployment: Implementação</div>
+                <div class="rule-badge">Surpassed: Ultrapassou</div>
+                <div class="rule-badge">Approach: Abordagem</div>
+                <div class="rule-badge">Dealership: Concessionária</div>
+                <div class="rule-badge">Horsepower: Cavalos de potência</div>
+                <div class="rule-badge">To Hire: Contratar</div>
+                <div class="rule-badge">Quarter (Q3): Trimestre</div>
+                <div class="rule-badge">To Achieve: Alcançar</div>
+                <div class="rule-badge">Colleague: Colega de trabalho</div>
+            </div>
+        </section>
+
+        <button class="btn-primary" onclick="showScreen('screen-menu')">Start Training</button>
+    </div>
+
+    <div id="screen-menu" class="screen">
+        <button class="back-btn" onclick="showScreen('screen-lesson')">← Back to Lesson</button>
+        <h1>Training Center</h1>
+        <p>Prepare for your interviews. Focus on listening and speaking clarity.</p>
+        
+        <div class="menu-dial">
+            <div class="dial-item" onclick="initPenAndPaper()">
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"/></svg>
+                <span>Pen & Paper</span>
+            </div>
+            <div class="dial-item" onclick="initMic()">
+                <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/></svg>
+                <span>Mic On</span>
+            </div>
+            <div class="dial-item" onclick="initListen()">
+                <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                <span>Listen to it</span>
+            </div>
+            <div class="dial-item" onclick="initFlashcards()">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/></svg>
+                <span>Flashcards</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-exercise" class="screen">
+        <button class="back-btn" onclick="showScreen('screen-menu')">← Exit Mode</button>
+        <h1 id="exercise-title" style="margin-bottom: 20px;">Exercise</h1>
+        <div id="exercise-content"></div>
+    </div>
+
+    <script>
+        // Data for Pen & Paper and Flashcards
+        const studyData = [
+            { q: "I ___ (send) the report to HR yesterday.", c: "sent", w: "sended" },
+            { q: "She ___ (approve) the budget for the new car.", c: "approved", w: "approve" },
+            { q: "We ___ (meet) the client on Friday.", c: "met", w: "meet" },
+            { q: "The interview ___ (to be) very intense.", c: "was", w: "were" },
+            { q: "They ___ (to be) ready for the presentation.", c: "were", w: "was" },
+            { q: "I ___ (to be) a manager last year.", c: "was", w: "am" },
+            { q: "He ___ (solve) the bottleneck quickly.", c: "solved", w: "solve" },
+            { q: "We ___ (have) a meeting this morning.", c: "had", w: "have" },
+            { q: "The sales ___ (increase) by 15%.", c: "increased", w: "increase" },
+            { q: "Caio ___ (deploy) the code before lunch.", c: "deployed", w: "deploy" },
+            { q: "You ___ (to be) hired for the position!", c: "were", w: "was" },
+            { q: "I ___ (sell) my old Mustang.", c: "sold", w: "selled" }
+        ];
+
+        // MASSIVE Data Array for Mic On and Listen to it (Dictation)
+        const speechPhrases = [
+            "The interview was great.",
+            "We were ready for the meeting.",
+            "I sent the document to HR.",
+            "The system failed yesterday.",
+            "I managed a team of five people.",
+            "He was the director last year.",
+            "We solved the critical issue.",
+            "I accepted the coordinator position.",
+            "She was very professional.",
+            "I closed the deal today.",
+            "My biggest strength is problem solving.",
+            "I was responsible for the marketing campaign.",
+            "The interview was very challenging.",
+            "I am looking for a new opportunity.",
+            "We surpassed the target by fifteen percent.",
+            "The system failed during the presentation.",
+            "We solved the critical issue in ten minutes.",
+            "The market changed significantly last year.",
+            "We offered a five percent discount.",
+            "Did they accept the new proposal?",
+            "The budget was approved this morning.",
+            "We were ready for the transition.",
+            "The previous quarter was very profitable.",
+            "They were not at the office on Friday.",
+            "Was the manager happy with the results?",
+            "I analyzed the code and found the problem.",
+            "We launched the new campaign.",
+            "The marketing team was aggressive.",
+            "Efficiency increased by thirty percent.",
+            "I had a Mustang two years ago."
+        ];
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'en-US';
+            msg.rate = 0.85; // Slightly slower for better dictation comprehension
+            window.speechSynthesis.speak(msg);
+        }
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.speechSynthesis.cancel();
+        }
+
+        // Helper function to clean strings for comparison (removes punctuation, double spaces, and lowers case)
+        function cleanString(str) {
+            return str.toLowerCase().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        // --- PEN AND PAPER ---
+        function initPenAndPaper() {
+            showScreen('screen-exercise');
+            const item = studyData[Math.floor(Math.random()*studyData.length)];
+            document.getElementById('exercise-title').innerText = "Pen & Paper";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card">
+                    <p style="color: var(--slate-600); font-weight: 600;">Complete using Simple Past or Was/Were:</p>
+                    <div class="active-target">${item.q.replace('___', '_______')}</div>
+                    <input type="text" id="pen-input" class="text-input-base" autocomplete="off">
+                    <div id="pen-feedback" class="feedback-area"></div>
+                    <button class="btn-primary" onclick="checkPen('${item.c}')">Validate</button>
+                </div>
+            `;
+            setTimeout(() => document.getElementById('pen-input').focus(), 100);
+        }
+
+        function checkPen(correct) {
+            const val = document.getElementById('pen-input').value.toLowerCase().trim();
+            const fb = document.getElementById('pen-feedback');
+            if(val === correct) {
+                fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                fb.innerText = "EXCELLENT! Correct."; 
+                setTimeout(initPenAndPaper, 1200);
+            } else {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerText = "TRY AGAIN. Think about the past form."; 
+            }
+        }
+
+        // --- MIC ON (STT with Word Matching Algorithm) ---
+        function initMic() {
+            showScreen('screen-exercise');
+            const target = speechPhrases[Math.floor(Math.random()*speechPhrases.length)];
+            // Removing punctuation for display so it looks cleaner for reading
+            const displayTarget = target.replace(/[.,]/g, '');
+            
+            document.getElementById('exercise-title').innerText = "Mic On";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card" style="text-align:center;">
+                    <p style="color: var(--slate-600); font-weight: 600;">Read aloud clearly (Job Interview Voice):</p>
+                    <div class="active-target">${displayTarget}</div>
+                    <button id="mic-btn" style="background:var(--navy); color:white; border:none; width:80px; height:80px; border-radius:50%; margin:20px 0; cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" onclick="runSTT('${target}')">
+                        <svg viewBox="0 0 24 24" style="width:30px; fill:currentColor;"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/></svg>
+                    </button>
+                    <div id="mic-feedback" class="feedback-area" style="background: #f1f5f9;">Tap the mic and speak<br><small style="font-weight:normal;">(Ensure you are running this on a local server like Live Server for mic access)</small></div>
+                </div>
+            `;
+        }
+
+        function runSTT(target) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if(!SpeechRecognition) {
+                document.getElementById('mic-feedback').innerHTML = "Browser does not support microphone access. Try Google Chrome.";
+                return;
+            }
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            
+            const fb = document.getElementById('mic-feedback');
+            fb.innerText = "Listening... Speak now!";
+            fb.style.backgroundColor = "#e0f2fe"; fb.style.color = "var(--business-blue)";
+            
+            recognition.start();
+            
+            recognition.onresult = (e) => {
+                const transcript = e.results[0][0].transcript;
+                const cleanTrans = cleanString(transcript);
+                const cleanTarg = cleanString(target);
+                
+                // Forgiving Algorithm: If they hit 75% of the words, we pass them.
+                const targetWords = cleanTarg.split(' ');
+                let matchCount = 0;
+                targetWords.forEach(word => {
+                    if(cleanTrans.includes(word)) matchCount++;
+                });
+                
+                const matchPercentage = matchCount / targetWords.length;
+                
+                if(matchPercentage >= 0.75 || cleanTrans === cleanTarg) {
+                    fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                    fb.innerText = "Perfect clarity! Loading next..."; 
+                    setTimeout(initMic, 1500);
+                } else {
+                    fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                    fb.innerHTML = `I heard: <strong>"${transcript}"</strong>.<br>Try to speak clearer.`; 
+                }
+            };
+            
+            recognition.onerror = (e) => {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerText = "Microphone error: " + e.error + ". Make sure permissions are granted.";
+            };
+        }
+
+        // --- FLASHCARDS (TINDER SWIPE) ---
+        function initFlashcards() {
+            showScreen('screen-exercise');
+            document.getElementById('exercise-title').innerText = "Flashcards";
+            loadFlashCard();
+        }
+
+        function loadFlashCard() {
+            const item = studyData[Math.floor(Math.random()*studyData.length)];
+            const isLeftCorrect = Math.random() > 0.5;
+            
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="flash-wrapper" id="swipe-area">
+                    <div class="swipe-hint">
+                        <span>← ${isLeftCorrect ? item.w : item.c}</span>
+                        <span>${!isLeftCorrect ? item.w : item.c} →</span>
+                    </div>
+                    <div class="flash-card" id="card">
+                        <div class="flash-word">${item.q.replace('___', ' [ ? ] ')}</div>
+                        <p style="font-size:12px; color:var(--slate-600); font-weight:bold;">SWIPE TO THE CORRECT VERB</p>
+                    </div>
+                </div>
+                <div id="flash-feedback" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; opacity:0; transition:0.3s; display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:900; color:white;"></div>
+            `;
+            setupSwipe('card', isLeftCorrect ? 'right' : 'left'); // Swiping towards the correct side
+        }
+
+        function setupSwipe(id, correctSide) {
+            const card = document.getElementById(id);
+            let startX = 0;
+            
+            card.addEventListener('touchstart', e => { startX = e.touches[0].clientX; card.style.transition = 'none'; });
+            card.addEventListener('mousedown', e => { startX = e.clientX; card.style.transition = 'none'; card.dataset.down = 'true'; });
+            
+            const handleMove = (x) => {
+                let move = x - startX;
+                card.style.transform = `translateX(${move}px) rotate(${move/15}deg)`;
+            };
+            
+            card.addEventListener('touchmove', e => handleMove(e.touches[0].clientX));
+            card.addEventListener('mousemove', e => { if(card.dataset.down === 'true') handleMove(e.clientX); });
+            
+            const handleEnd = (x) => {
+                card.dataset.down = 'false';
+                card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                let diff = x - startX;
+                if(Math.abs(diff) > 80) {
+                    let side = diff > 0 ? 'right' : 'left';
+                    handleFlashResult(side === correctSide);
+                } else {
+                    card.style.transform = `translateX(0) rotate(0)`;
+                }
+            };
+
+            card.addEventListener('touchend', e => handleEnd(e.changedTouches[0].clientX));
+            card.addEventListener('mouseup', e => handleEnd(e.clientX));
+            card.addEventListener('mouseleave', e => { if(card.dataset.down === 'true') handleEnd(e.clientX); });
+        }
+
+        function handleFlashResult(isCorrect) {
+            const fb = document.getElementById('flash-feedback');
+            fb.style.backgroundColor = isCorrect ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)";
+            fb.innerText = isCorrect ? "CORRECT!" : "WRONG!";
+            fb.style.opacity = "1";
+            setTimeout(() => {
+                fb.style.opacity = "0";
+                loadFlashCard();
+            }, 800);
+        }
+
+        // --- LISTEN TO IT (Dictation Mode) ---
+        let currentDictationTarget = "";
+
+        function initListen() {
+            showScreen('screen-exercise');
+            currentDictationTarget = speechPhrases[Math.floor(Math.random()*speechPhrases.length)];
+            
+            document.getElementById('exercise-title').innerText = "Dictation";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card" style="text-align:center;">
+                    <p style="color: var(--slate-600); font-weight: 600; margin-bottom:20px;">Train your ear. Click play, listen, and type exactly what you hear.</p>
+                    
+                    <button class="btn-primary" style="margin: 0 auto 30px auto; width: 80%;" onclick="speak('${currentDictationTarget}')">
+                        <svg viewBox="0 0 24 24" style="width:24px; fill:currentColor; margin-right:10px;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                        Play Audio
+                    </button>
+                    
+                    <input type="text" id="dictation-input" class="text-input-base" placeholder="Type the phrase here..." autocomplete="off">
+                    
+                    <div id="dictation-fb" class="feedback-area" style="margin-top:20px;"></div>
+                    
+                    <button class="btn-primary" onclick="checkDictation()" style="margin-top: 15px; background: var(--business-blue);">Submit Answer</button>
+                </div>
+            `;
+            setTimeout(() => document.getElementById('dictation-input').focus(), 100);
+        }
+
+        function checkDictation() {
+            const inputVal = document.getElementById('dictation-input').value;
+            const fb = document.getElementById('dictation-fb');
+            
+            // Clean both strings to ignore punctuation, capitalization, and extra spaces
+            const cleanInput = cleanString(inputVal);
+            const cleanTarget = cleanString(currentDictationTarget);
+            
+            if(cleanInput === "") {
+                fb.style.backgroundColor = "#fef3c7"; fb.style.color = "#d97706";
+                fb.innerText = "Please type something before submitting.";
+                return;
+            }
+
+            if(cleanInput === cleanTarget) {
+                fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                fb.innerText = "SHARP EAR! Perfect match."; 
+                setTimeout(initListen, 1800);
+            } else {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerHTML = `ALMOST! The correct phrase was:<br><strong>"${currentDictationTarget}"</strong>`; 
+            }
+        }
+    </script>
+</body>
+</html>
