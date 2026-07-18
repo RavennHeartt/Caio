@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Business English Mastery | Lesson 03 (Premium)</title>
+    <style>
+        :root {
+            --navy: #0a192f;
+            --business-blue: #1e3a8a;
+            --accent-blue: #3b82f6;
+            --slate-600: #475569;
+            --slate-900: #0f172a;
+            --bg-corporate: #f8fafc;
+            --surface: #ffffff;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-corporate); 
+            color: var(--slate-900); 
+            line-height: 1.6; 
+        }
+
+        /* Typography */
+        h1 { font-size: 32px; font-weight: 800; color: var(--navy); letter-spacing: -1px; }
+        h2 { font-size: 20px; font-weight: 700; color: var(--business-blue); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; margin-top: 25px;}
+        h2::before { content: ''; width: 4px; height: 20px; background: var(--accent-blue); margin-right: 10px; border-radius: 2px; }
+        h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--slate-600); margin-top: 15px;}
+        p { margin-bottom: 15px; font-size: 16px; text-align: justify; }
+        strong { color: var(--navy); }
+
+        /* Navigation */
+        .screen { display: none; min-height: 100vh; padding: 30px 20px; max-width: 800px; margin: 0 auto; animation: fadeIn 0.4s ease-out forwards; }
+        .screen.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Corporate Header */
+        .header-main { text-align: center; margin-bottom: 40px; padding: 40px 20px; background: var(--navy); color: white; border-radius: 0 0 40px 40px; margin: -30px -20px 40px -20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .header-main h4 { text-transform: uppercase; letter-spacing: 4px; font-size: 12px; opacity: 0.8; margin-bottom: 10px; }
+        .header-main h1 { color: white; margin-bottom: 5px; font-size: 28px;}
+        .header-main p { text-align: center; font-size: 14px; opacity: 0.9; }
+        .instructor-tag { font-weight: 700; color: var(--accent-blue); }
+
+        /* Components */
+        .card { background: var(--surface); border-radius: var(--radius); padding: 25px; margin-bottom: 25px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        
+        .dialogue-box { background: #f1f5f9; border-radius: 12px; padding: 20px; margin: 15px 0; border-left: 5px solid var(--navy); max-height: 500px; overflow-y: auto; }
+        .dialogue-line { margin-bottom: 12px; font-size: 15px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
+        .dialogue-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .speaker { font-weight: 800; color: var(--business-blue); text-transform: uppercase; font-size: 12px; display: block; margin-bottom: 4px; }
+        
+        .scenario-title { font-weight: 700; color: var(--navy); font-size: 16px; margin-bottom: 10px; display: block; }
+        
+        .reading-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 20px; margin: 15px 0; font-size: 16px; line-height: 1.8; color: #1c1917; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+
+        .highlight-box { background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-blue); margin-bottom: 15px; }
+
+        .rule-badge { display: inline-block; padding: 6px 12px; background: #e2e8f0; border-radius: 6px; font-weight: 700; font-size: 13px; margin-right: 8px; margin-bottom: 8px; }
+        
+        .btn-primary { display: flex; justify-content: center; align-items: center; width: 100%; background: var(--navy); color: white; border: none; padding: 18px; font-size: 16px; font-weight: 700; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; }
+        .btn-primary:hover { background: var(--business-blue); box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3); }
+
+        /* Training Menu */
+        .menu-dial { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .dial-item { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 30px 15px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .dial-item:hover { border-color: var(--accent-blue); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .dial-item svg { width: 40px; height: 40px; fill: var(--business-blue); margin-bottom: 15px; }
+        .dial-item span { display: block; font-weight: 700; font-size: 14px; color: var(--navy); }
+
+        /* Flashcards Tinder Style */
+        .flash-wrapper { position: relative; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .flash-card { position: absolute; width: 300px; height: 350px; background: white; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); touch-action: none; cursor: grab; z-index: 10; border: 2px solid var(--border); }
+        .flash-word { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 40px; }
+        .swipe-hint { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 15px; font-weight: 800; font-size: 14px; color: var(--business-blue); top: 50%; z-index: 1; }
+
+        /* Screen Styles for Mic/Listen */
+        .active-target { font-size: 22px; font-weight: 800; text-align: center; color: var(--business-blue); margin: 30px 0; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px dashed var(--accent-blue); }
+        .feedback-area { text-align: center; min-height: 50px; font-weight: 700; margin-top: 20px; padding: 10px; border-radius: 8px; }
+        .back-btn { background: none; border: none; color: var(--business-blue); font-size: 16px; font-weight: 700; cursor: pointer; padding: 10px 0; margin-bottom: 10px; display: flex; align-items: center; }
+        
+        /* Input Base */
+        .text-input-base { width: 100%; padding: 15px; border-radius: 10px; border: 2px solid var(--border); outline: none; font-size: 18px; text-align: center; font-family: inherit; transition: 0.3s; }
+        .text-input-base:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    </style>
+</head>
+<body>
+
+    <div id="screen-lesson" class="screen active">
+        <header class="header-main">
+            <h4>Module 03: The Timeline</h4>
+            <h1>Present, Past & Future</h1>
+            <p>Trilha Personalizada: <strong>Caio Gomes</strong></p>
+            <p>Instrutor: <span class="instructor-tag">Matheus Machado</span></p>
+        </header>
+
+        <section class="card">
+            <h2>1. The Foundation: Present & Past Review</h2>
+            <p>Let's review what we already know. In business, clarity is everything. O <strong>Simple Present</strong> is our tool for routines, habits, and absolute facts. Por outro lado, usamos o <strong>Simple Past</strong> para ações que já morreram, capítulos encerrados.</p>
+            
+            <div class="highlight-box">
+                <p>• <strong>Present (Routine):</strong> I always <strong>check</strong> the emails in the morning. (Eu sempre checo...)</p>
+                <p>• <strong>Past (Finished):</strong> I <strong>checked</strong> the emails yesterday. (Eu chequei...)</p>
+                <p>• <strong>Present (Fact):</strong> The server <strong>is</strong> fast. (O servidor é...)</p>
+                <p>• <strong>Past (Finished):</strong> The server <strong>was</strong> down last night. (O servidor estava...)</p>
+            </div>
+            <p><em>Mental trigger:</em> If you mention "yesterday", "last week", or "in 2025", the verb MUST be in the past.</p>
+        </section>
+
+        <section class="card">
+            <h2>2. The Gerund (-ING): Action in Progress</h2>
+            <p>When you are in the middle of a task, you use the <strong>Present Continuous</strong>. O sufixo <strong>-ING</strong> é o exato equivalente ao nosso -ANDO, -ENDO, -INDO. To make it work, it always needs the verb To Be as an assistant.</p>
+            
+            <div class="highlight-box">
+                <p>• I <strong>am working</strong> on the new project right now. <em>(Eu estou trabalhando...)</em></p>
+                <p>• They <strong>are developing</strong> a new software. <em>(Eles estão desenvolvendo...)</em></p>
+                <p>• The CEO <strong>is waiting</strong> in the boardroom. <em>(O CEO está esperando...)</em></p>
+            </div>
+            
+            <p>In emails, it is very common to see the -ING after prepositions: <em>"Thank you for <strong>sending</strong> the report."</em> (Obrigado por enviar...).</p>
+        </section>
+
+        <section class="card">
+            <h2>3. The Future: WILL vs. GOING TO</h2>
+            <p>To talk about the future in English, we don't just change the verb ending. We use helper words. E aqui está o segredo: <strong>Will</strong> e <strong>Going To</strong> não são a mesma coisa no ambiente corporativo.</p>
+            
+            <h3>WILL (Instant Decisions & Promises)</h3>
+            <p>Usamos o "Will" para decisões tomadas no exato momento da fala, promessas ou quando não temos 100% de certeza.</p>
+            <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p><em>(The phone rings)</em> "I <strong>will answer</strong> it!" (Eu vou atender / atendo! - Decisão rápida).</p>
+                <p>"Don't worry, I <strong>will send</strong> the files by 5 PM." (Promessa de entrega).</p>
+            </div>
+
+            <h3>GOING TO (Plans & Evidence)</h3>
+            <p>Usamos "Going to" (sempre com o verbo To Be antes) para planos estruturados, coisas já decididas no passado para acontecer no futuro, ou quando há evidências claras.</p>
+            <div style="background: #f1f5f9; padding: 15px; border-radius: 8px;">
+                <p>"We <strong>are going to launch</strong> the campaign in December." (O projeto já está aprovado, é um plano).</p>
+                <p>"Look at those numbers. We <strong>are going to lose</strong> money." (Evidência clara nos dados).</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>4. Reading Challenge: The Status Update</h2>
+            <p><em>Identify the timeline. Notice how the manager moves smoothly from the past, to the present, and into the future plans.</em></p>
+            <div class="reading-box">
+                "Good morning, team. Yesterday, we <strong>finished</strong> the primary tests on the database. The results <strong>were</strong> outstanding. Right now, the engineering team <strong>is deploying</strong> the secondary servers. They <strong>are working</strong> hard to maintain stability. Because of this success, we <strong>are going to present</strong> the final product to the investors next Monday. I <strong>will send</strong> the presentation draft to everyone this afternoon so you can review it. Thank you for your dedication."
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>5. Exhaustive Business Roleplays</h2>
+            <p><em>Speak out loud. Pay attention to the shift in timelines (Past to Present to Future). This is real-world fluency testing.</em></p>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 1: The Urgent Fix (Will vs Past)</span>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Caio, we have a major problem. The payment gateway crashed."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Crashed? But it worked perfectly yesterday during the tests."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "I know. The clients are complaining. Are you fixing it?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes, I am looking at the code right now. I found a bug in the API."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "How long is it going to take?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Give me ten minutes. I will reboot the system and apply the patch."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Okay. I will inform the customer service team."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Done. It is running again. We are safe."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 2: Quarter Planning (Going To)</span>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Matheus, did you see the email from the CEO?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Yes, I saw it this morning. We are going to expand to Europe."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "That is huge. When are we going to start the hiring process?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "HR is preparing the budget right now. They are going to open fifty new positions next month."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Wow. Are we going to translate the entire platform?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Exactly. In fact, I will need your help with the front-end layout."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "No problem. I will schedule a meeting with the UI designers tomorrow."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Great. This expansion is going to change everything."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 3: Project Status Report (Present Continuous)</span>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Caio, can you give me a status update on the new app?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Sure. Right now, the back-end team is integrating the database."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Are they facing any issues?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "A few minor bugs, but they are solving them quickly."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "What about the marketing campaign?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "They are waiting for the final logo design. Sarah is drawing it today."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Excellent. I will tell the board that we are on schedule."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes, we are going to deliver the app before the deadline."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 4: Performance Review (Past vs Future)</span>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Have a seat, Caio. Let's talk about your performance this year."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Thank you, Matheus. I am excited to hear your feedback."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "In the first semester, you managed the crisis very well. You solved the core issues."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "It was a challenging period, but the team was amazing."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Because of your hard work, I am going to promote you to Senior Developer."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Seriously? Thank you! I will not disappoint you."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "I know you won't. You are going to lead the new European squad."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "I accept the challenge. I am starting to draft the strategy today."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 5: Dealing with an Angry Client (Mixed)</span>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Caio, the client from New York is on the phone. He is furious."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Oh no. What happened?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "They didn't receive the shipment yesterday. It is delayed."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Let me check the system. Ah, I see. The logistics company had a strike."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "What are we going to do? We are going to lose the contract."</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Don't panic. I will call the secondary supplier right now."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Are they delivering today?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "I will pay for premium air shipping. We are going to fix this. Tell the client I am handling it."</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>6. Executive Dictionary</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <div class="rule-badge">To Crash: Falhar / Cair (sistema)</div>
+                <div class="rule-badge">Draft: Rascunho</div>
+                <div class="rule-badge">Boardroom: Sala de reuniões</div>
+                <div class="rule-badge">Shipment: Remessa / Envio</div>
+                <div class="rule-badge">Deadline: Prazo final</div>
+                <div class="rule-badge">Outstanding: Excepcional</div>
+                <div class="rule-badge">To Expand: Expandir</div>
+                <div class="rule-badge">Strike: Greve</div>
+                <div class="rule-badge">To Schedule: Agendar</div>
+                <div class="rule-badge">On schedule: No prazo</div>
+            </div>
+        </section>
+
+        <button class="btn-primary" onclick="showScreen('screen-menu')">Start Practicing</button>
+    </div>
+
+    <div id="screen-menu" class="screen">
+        <button class="back-btn" onclick="showScreen('screen-lesson')">← Back to Lesson</button>
+        <h1>Training Center (Module 3)</h1>
+        <p>Master the timeline. Future, Past, and Present continuous.</p>
+        
+        <div class="menu-dial">
+            <div class="dial-item" onclick="initPenAndPaper()">
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"/></svg>
+                <span>Pen & Paper</span>
+            </div>
+            <div class="dial-item" onclick="initMic()">
+                <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/></svg>
+                <span>Mic On</span>
+            </div>
+            <div class="dial-item" onclick="initListen()">
+                <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                <span>Listen to it</span>
+            </div>
+            <div class="dial-item" onclick="initFlashcards()">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/></svg>
+                <span>Flashcards</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-exercise" class="screen">
+        <button class="back-btn" onclick="showScreen('screen-menu')">← Exit Mode</button>
+        <h1 id="exercise-title" style="margin-bottom: 20px;">Exercise</h1>
+        <div id="exercise-content"></div>
+    </div>
+
+    <script>
+        // Data for Pen & Paper and Flashcards (Module 3 Focus: Will, Going to, ING, Past, Present)
+        const studyData = [
+            { q: "I ___ (send) the files right now! Don't worry.", c: "will send", w: "am going to send" },
+            { q: "We ___ (expand) to Europe next year. The CEO approved it.", c: "are going to expand", w: "will expand" },
+            { q: "They ___ (work) on the new layout at this moment.", c: "are working", w: "work" },
+            { q: "She ___ (fix) the bug yesterday morning.", c: "fixed", w: "is fixing" },
+            { q: "I promise I ___ (call) the client back.", c: "will call", w: "called" },
+            { q: "Look at the data! We ___ (lose) money.", c: "are going to lose", w: "will lose" },
+            { q: "The engineers ___ (deploy) the servers right now.", c: "are deploying", w: "deployed" },
+            { q: "He usually ___ (check) emails at 8 AM.", c: "checks", w: "is checking" },
+            { q: "The payment gateway ___ (crash) last night.", c: "crashed", w: "crashes" },
+            { q: "Give me a minute. I ___ (reboot) the system.", c: "will reboot", w: "am going to reboot" },
+            { q: "HR ___ (prepare) the new budget this week.", c: "is preparing", w: "prepared" },
+            { q: "I ___ (promote) him because of his past results.", c: "am going to promote", w: "will promote" }
+        ];
+
+        // Massively Expanded Data Array for Mic On and Dictation (Module 3 Vocab)
+        const speechPhrases = [
+            "The engineers are deploying the servers.",
+            "I will send the files right now.",
+            "We are going to expand to Europe.",
+            "The payment gateway crashed yesterday.",
+            "I am looking at the code right now.",
+            "I will reboot the system in ten minutes.",
+            "They are working hard to maintain stability.",
+            "We are going to present the final product.",
+            "Are we going to translate the entire platform?",
+            "HR is preparing the budget right now.",
+            "I will schedule a meeting for tomorrow.",
+            "The back end team is integrating the database.",
+            "Sarah is drawing the final logo today.",
+            "We are going to deliver the app before the deadline.",
+            "I will not disappoint you.",
+            "You are going to lead the new squad.",
+            "I am starting to draft the strategy today.",
+            "The logistics company had a strike.",
+            "I will call the secondary supplier.",
+            "We are going to lose the contract.",
+            "I will pay for premium air shipping.",
+            "The clients are complaining about the delay.",
+            "I will inform the customer service team.",
+            "She fixed the bug yesterday morning.",
+            "We are going to open fifty new positions."
+        ];
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'en-US';
+            msg.rate = 0.85; // Optimized for dictation comprehension
+            window.speechSynthesis.speak(msg);
+        }
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.speechSynthesis.cancel();
+        }
+
+        function cleanString(str) {
+            return str.toLowerCase().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        // --- PEN AND PAPER ---
+        function initPenAndPaper() {
+            showScreen('screen-exercise');
+            const item = studyData[Math.floor(Math.random()*studyData.length)];
+            document.getElementById('exercise-title').innerText = "Pen & Paper";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card">
+                    <p style="color: var(--slate-600); font-weight: 600;">Complete the sentence (Future, Past, Present or -ING):</p>
+                    <div class="active-target">${item.q.replace('___', '_______')}</div>
+                    <input type="text" id="pen-input" class="text-input-base" autocomplete="off">
+                    <div id="pen-feedback" class="feedback-area"></div>
+                    <button class="btn-primary" onclick="checkPen('${item.c}')">Validate</button>
+                </div>
+            `;
+            setTimeout(() => document.getElementById('pen-input').focus(), 100);
+        }
+
+        function checkPen(correct) {
+            const val = document.getElementById('pen-input').value.toLowerCase().trim();
+            const fb = document.getElementById('pen-feedback');
+            if(val === correct.toLowerCase()) {
+                fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                fb.innerText = "EXCELLENT! Correct."; 
+                setTimeout(initPenAndPaper, 1200);
+            } else {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerText = "TRY AGAIN. Think about the timeline rule."; 
+            }
+        }
+
+        // --- MIC ON (STT) ---
+        function initMic() {
+            showScreen('screen-exercise');
+            const target = speechPhrases[Math.floor(Math.random()*speechPhrases.length)];
+            const displayTarget = target.replace(/[.,]/g, '');
+            
+            document.getElementById('exercise-title').innerText = "Mic On";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card" style="text-align:center;">
+                    <p style="color: var(--slate-600); font-weight: 600;">Read aloud clearly (Job Interview Voice):</p>
+                    <div class="active-target">${displayTarget}</div>
+                    <button id="mic-btn" style="background:var(--navy); color:white; border:none; width:80px; height:80px; border-radius:50%; margin:20px 0; cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" onclick="runSTT('${target}')">
+                        <svg viewBox="0 0 24 24" style="width:30px; fill:currentColor;"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/></svg>
+                    </button>
+                    <div id="mic-feedback" class="feedback-area" style="background: #f1f5f9;">Tap the mic and speak<br><small style="font-weight:normal;">(Ensure you are running this on a local server)</small></div>
+                </div>
+            `;
+        }
+
+        function runSTT(target) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if(!SpeechRecognition) {
+                document.getElementById('mic-feedback').innerHTML = "Browser does not support microphone access. Try Chrome.";
+                return;
+            }
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            
+            const fb = document.getElementById('mic-feedback');
+            fb.innerText = "Listening... Speak now!";
+            fb.style.backgroundColor = "#e0f2fe"; fb.style.color = "var(--business-blue)";
+            
+            recognition.start();
+            
+            recognition.onresult = (e) => {
+                const transcript = e.results[0][0].transcript;
+                const cleanTrans = cleanString(transcript);
+                const cleanTarg = cleanString(target);
+                
+                const targetWords = cleanTarg.split(' ');
+                let matchCount = 0;
+                targetWords.forEach(word => {
+                    if(cleanTrans.includes(word)) matchCount++;
+                });
+                
+                const matchPercentage = matchCount / targetWords.length;
+                
+                if(matchPercentage >= 0.75 || cleanTrans === cleanTarg) {
+                    fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                    fb.innerText = "Perfect clarity! Loading next..."; 
+                    setTimeout(initMic, 1500);
+                } else {
+                    fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                    fb.innerHTML = `I heard: <strong>"${transcript}"</strong>.<br>Try to speak clearer.`; 
+                }
+            };
+            
+            recognition.onerror = (e) => {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerText = "Microphone error: " + e.error + ". Make sure permissions are granted.";
+            };
+        }
+
+        // --- FLASHCARDS (TINDER SWIPE) ---
+        function initFlashcards() {
+            showScreen('screen-exercise');
+            document.getElementById('exercise-title').innerText = "Flashcards";
+            loadFlashCard();
+        }
+
+        function loadFlashCard() {
+            const item = studyData[Math.floor(Math.random()*studyData.length)];
+            const isLeftCorrect = Math.random() > 0.5;
+            
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="flash-wrapper" id="swipe-area">
+                    <div class="swipe-hint">
+                        <span>← ${isLeftCorrect ? item.w : item.c}</span>
+                        <span>${!isLeftCorrect ? item.w : item.c} →</span>
+                    </div>
+                    <div class="flash-card" id="card">
+                        <div class="flash-word">${item.q.replace('___', ' [ ? ] ')}</div>
+                        <p style="font-size:12px; color:var(--slate-600); font-weight:bold;">SWIPE TO THE CORRECT VERB</p>
+                    </div>
+                </div>
+                <div id="flash-feedback" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; opacity:0; transition:0.3s; display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:900; color:white;"></div>
+            `;
+            setupSwipe('card', isLeftCorrect ? 'left' : 'right');
+        }
+
+        function setupSwipe(id, correctSide) {
+            const card = document.getElementById(id);
+            let startX = 0;
+            
+            card.addEventListener('touchstart', e => { startX = e.touches[0].clientX; card.style.transition = 'none'; });
+            card.addEventListener('mousedown', e => { startX = e.clientX; card.style.transition = 'none'; card.dataset.down = 'true'; });
+            
+            const handleMove = (x) => {
+                let move = x - startX;
+                card.style.transform = `translateX(${move}px) rotate(${move/15}deg)`;
+            };
+            
+            card.addEventListener('touchmove', e => handleMove(e.touches[0].clientX));
+            card.addEventListener('mousemove', e => { if(card.dataset.down === 'true') handleMove(e.clientX); });
+            
+            const handleEnd = (x) => {
+                card.dataset.down = 'false';
+                card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                let diff = x - startX;
+                if(Math.abs(diff) > 80) {
+                    let side = diff > 0 ? 'right' : 'left';
+                    handleFlashResult(side === correctSide);
+                } else {
+                    card.style.transform = `translateX(0) rotate(0)`;
+                }
+            };
+
+            card.addEventListener('touchend', e => handleEnd(e.changedTouches[0].clientX));
+            card.addEventListener('mouseup', e => handleEnd(e.clientX));
+            card.addEventListener('mouseleave', e => { if(card.dataset.down === 'true') handleEnd(e.clientX); });
+        }
+
+        function handleFlashResult(isCorrect) {
+            const fb = document.getElementById('flash-feedback');
+            fb.style.backgroundColor = isCorrect ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)";
+            fb.innerText = isCorrect ? "CORRECT!" : "WRONG!";
+            fb.style.opacity = "1";
+            setTimeout(() => {
+                fb.style.opacity = "0";
+                loadFlashCard();
+            }, 800);
+        }
+
+        // --- LISTEN TO IT (Dictation) ---
+        let currentDictationTarget = "";
+
+        function initListen() {
+            showScreen('screen-exercise');
+            currentDictationTarget = speechPhrases[Math.floor(Math.random()*speechPhrases.length)];
+            
+            document.getElementById('exercise-title').innerText = "Dictation";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card" style="text-align:center;">
+                    <p style="color: var(--slate-600); font-weight: 600; margin-bottom:20px;">Train your ear. Click play, listen, and type exactly what you hear.</p>
+                    
+                    <button class="btn-primary" style="margin: 0 auto 30px auto; width: 80%;" onclick="speak('${currentDictationTarget}')">
+                        <svg viewBox="0 0 24 24" style="width:24px; fill:currentColor; margin-right:10px;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                        Play Audio
+                    </button>
+                    
+                    <input type="text" id="dictation-input" class="text-input-base" placeholder="Type the phrase here..." autocomplete="off">
+                    
+                    <div id="dictation-fb" class="feedback-area" style="margin-top:20px;"></div>
+                    
+                    <button class="btn-primary" onclick="checkDictation()" style="margin-top: 15px; background: var(--business-blue);">Submit Answer</button>
+                </div>
+            `;
+            setTimeout(() => document.getElementById('dictation-input').focus(), 100);
+        }
+
+        function checkDictation() {
+            const inputVal = document.getElementById('dictation-input').value;
+            const fb = document.getElementById('dictation-fb');
+            
+            const cleanInput = cleanString(inputVal);
+            const cleanTarget = cleanString(currentDictationTarget);
+            
+            if(cleanInput === "") {
+                fb.style.backgroundColor = "#fef3c7"; fb.style.color = "#d97706";
+                fb.innerText = "Please type something before submitting.";
+                return;
+            }
+
+            if(cleanInput === cleanTarget) {
+                fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                fb.innerText = "SHARP EAR! Perfect match."; 
+                setTimeout(initListen, 1800);
+            } else {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerHTML = `ALMOST! The correct phrase was:<br><strong>"${currentDictationTarget}"</strong>`; 
+            }
+        }
+    </script>
+</body>
+</html>
