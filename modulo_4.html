@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Business English Mastery | Lesson 04 (Premium)</title>
+    <style>
+        :root {
+            --navy: #0a192f;
+            --business-blue: #1e3a8a;
+            --accent-blue: #3b82f6;
+            --petro-green: #008542; /* Petrobras subtle vibe */
+            --petro-yellow: #fdd900;
+            --slate-600: #475569;
+            --slate-900: #0f172a;
+            --bg-corporate: #f8fafc;
+            --surface: #ffffff;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-corporate); 
+            color: var(--slate-900); 
+            line-height: 1.6; 
+        }
+
+        /* Typography */
+        h1 { font-size: 32px; font-weight: 800; color: var(--navy); letter-spacing: -1px; }
+        h2 { font-size: 20px; font-weight: 700; color: var(--petro-green); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; margin-top: 25px;}
+        h2::before { content: ''; width: 4px; height: 20px; background: var(--petro-yellow); margin-right: 10px; border-radius: 2px; }
+        h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--slate-600); margin-top: 15px;}
+        p { margin-bottom: 15px; font-size: 16px; text-align: justify; }
+        strong { color: var(--navy); }
+
+        /* Navigation */
+        .screen { display: none; min-height: 100vh; padding: 30px 20px; max-width: 800px; margin: 0 auto; animation: fadeIn 0.4s ease-out forwards; }
+        .screen.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Corporate Header */
+        .header-main { text-align: center; margin-bottom: 40px; padding: 40px 20px; background: var(--navy); color: white; border-radius: 0 0 40px 40px; margin: -30px -20px 40px -20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-bottom: 5px solid var(--petro-green); }
+        .header-main h4 { text-transform: uppercase; letter-spacing: 4px; font-size: 12px; opacity: 0.8; margin-bottom: 10px; color: var(--petro-yellow); }
+        .header-main h1 { color: white; margin-bottom: 5px; font-size: 28px;}
+        .header-main p { text-align: center; font-size: 14px; opacity: 0.9; }
+        .instructor-tag { font-weight: 700; color: var(--accent-blue); }
+
+        /* Components */
+        .card { background: var(--surface); border-radius: var(--radius); padding: 25px; margin-bottom: 25px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        
+        .flipped-badge { display: inline-block; background: var(--danger); color: white; padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
+
+        .teacher-prompt { background: #fef2f2; border-left: 4px solid var(--danger); padding: 15px; border-radius: 0 8px 8px 0; margin-bottom: 20px; }
+        .teacher-prompt h4 { color: var(--danger); margin-bottom: 5px; font-size: 14px; text-transform: uppercase; }
+
+        .dialogue-box { background: #f1f5f9; border-radius: 12px; padding: 20px; margin: 15px 0; border-left: 5px solid var(--navy); max-height: 500px; overflow-y: auto; }
+        .dialogue-line { margin-bottom: 12px; font-size: 15px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
+        .dialogue-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .speaker { font-weight: 800; color: var(--petro-green); text-transform: uppercase; font-size: 12px; display: block; margin-bottom: 4px; }
+        
+        .scenario-title { font-weight: 700; color: var(--navy); font-size: 16px; margin-bottom: 10px; display: block; }
+        
+        .reading-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 20px; margin: 15px 0; font-size: 16px; line-height: 1.8; color: #1c1917; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+
+        .highlight-box { background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--petro-green); margin-bottom: 15px; }
+
+        .rule-badge { display: inline-block; padding: 6px 12px; background: #e2e8f0; border-radius: 6px; font-weight: 700; font-size: 13px; margin-right: 8px; margin-bottom: 8px; color: var(--navy); }
+        
+        .btn-primary { display: flex; justify-content: center; align-items: center; width: 100%; background: var(--navy); color: white; border: none; padding: 18px; font-size: 16px; font-weight: 700; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; }
+        .btn-primary:hover { background: var(--petro-green); box-shadow: 0 10px 20px rgba(0, 133, 66, 0.3); }
+
+        /* Training Menu */
+        .menu-dial { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .dial-item { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 30px 15px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .dial-item:hover { border-color: var(--petro-green); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .dial-item svg { width: 40px; height: 40px; fill: var(--navy); margin-bottom: 15px; }
+        .dial-item span { display: block; font-weight: 700; font-size: 14px; color: var(--navy); }
+
+        /* Flashcards */
+        .flash-wrapper { position: relative; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .flash-card { position: absolute; width: 300px; height: 350px; background: white; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); touch-action: none; cursor: grab; z-index: 10; border: 2px solid var(--border); }
+        .flash-word { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 40px; }
+        .swipe-hint { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 15px; font-weight: 800; font-size: 14px; color: var(--business-blue); top: 50%; z-index: 1; }
+
+        /* Inputs & Feedback */
+        .active-target { font-size: 22px; font-weight: 800; text-align: center; color: var(--navy); margin: 30px 0; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px dashed var(--petro-green); }
+        .feedback-area { text-align: center; min-height: 50px; font-weight: 700; margin-top: 20px; padding: 10px; border-radius: 8px; }
+        .back-btn { background: none; border: none; color: var(--navy); font-size: 16px; font-weight: 700; cursor: pointer; padding: 10px 0; margin-bottom: 10px; display: flex; align-items: center; }
+        .text-input-base { width: 100%; padding: 15px; border-radius: 10px; border: 2px solid var(--border); outline: none; font-size: 18px; text-align: center; font-family: inherit; transition: 0.3s; }
+        .text-input-base:focus { border-color: var(--petro-green); box-shadow: 0 0 0 3px rgba(0, 133, 66, 0.1); }
+    </style>
+</head>
+<body>
+
+    <div id="screen-lesson" class="screen active">
+        <header class="header-main">
+            <h4>Module 04: The Flipped Boardroom</h4>
+            <h1>O&G Operations & The Past Continuous</h1>
+            <p>Teacher for today: <strong>Caio Gomes</strong></p>
+            <p>Student: <span class="instructor-tag">Matheus Machado</span></p>
+        </header>
+
+        <section class="card">
+            <span class="flipped-badge">Your Turn to Teach</span>
+            <h2>1. The Big Review: Present & Past</h2>
+            <p>Caio, today you are in charge. Matheus is your student. You need to explain to him how we manage routines and past events in the Petrobras ecosystem.</p>
+            
+            <div class="teacher-prompt">
+                <h4>Caio's Mission 1:</h4>
+                <p>Read the examples below to Matheus. Explain to him <strong>WHY</strong> the first sentence is Simple Present (routine/facts) and the second is Simple Past (dead actions). Use your own words.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p>• <strong>Fact:</strong> The offshore rig <strong>extracts</strong> 10,000 barrels every day.</p>
+                <p>• <strong>Finished Action:</strong> We <strong>extracted</strong> 15,000 barrels last Tuesday.</p>
+                <br>
+                <p>• <strong>Routine:</strong> The engineering team <strong>inspects</strong> the pipelines weekly.</p>
+                <p>• <strong>Finished Action:</strong> They <strong>inspected</strong> the valves yesterday morning.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="flipped-badge">Your Turn to Teach</span>
+            <h2>2. The Big Review: Will vs. Going To</h2>
+            <p>Forecasting production and reacting to emergencies are two different things. Você precisa explicar para o Matheus quando usamos <strong>Will</strong> e quando usamos <strong>Going to</strong>.</p>
+            
+            <div class="teacher-prompt">
+                <h4>Caio's Mission 2:</h4>
+                <p>Explain to Matheus that "Going to" is for planned budgets and projects, while "Will" is for instant reactions (like fixing a sudden leak). Read the examples below and translate the context to him.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p>• <strong>Crisis (Reaction):</strong> "The pressure is too high! I <strong>will shut down</strong> the main valve immediately!"</p>
+                <p>• <strong>Plan (Evidence):</strong> "The board approved the budget. We <strong>are going to build</strong> a new refinery in 2027."</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3. NEW CONCEPT: The Past Continuous</h2>
+            <p>No setor de Óleo e Gás, investigar incidentes é rotina. O <strong>Past Continuous</strong> descreve uma ação que <em>estava acontecendo</em> (em progresso) quando outra ação cruzou o caminho. Formamos com: <strong>Was/Were + Verbo com ING</strong>.</p>
+            
+            <div class="highlight-box">
+                <p>• "The engineers <strong>were inspecting</strong> the drill when the alarm rang." <br><em>(Os engenheiros estavam inspecionando a broca quando o alarme tocou.)</em></p>
+                <p>• "I <strong>was analyzing</strong> the supply chain report while the CEO was talking." <br><em>(Eu estava analisando o relatório de logística enquanto o CEO falava.)</em></p>
+            </div>
+            
+            <p><strong>Caio, explain to Matheus:</strong> Notice that the "background action" is long (Past Continuous), and the "interruption" is short (Simple Past).</p>
+        </section>
+
+        <section class="card">
+            <h2>4. Petrobras Roleplays (Flipped Context)</h2>
+            <p><em>Caio, you will guide these dialogues. Correct Matheus if he makes a mistake in the timeline. Speak clearly and with authority.</em></p>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 1: Offshore Rig (The Incident)</span>
+                <div class="dialogue-line"><span class="speaker">Caio (Manager)</span> "Matheus, I read your incident report. What exactly happened yesterday?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Engineer)</span> "We were drilling the new well when the pressure dropped suddenly."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Manager)</span> "Were the technicians monitoring the gauges?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Engineer)</span> "Yes, they were looking at the system. The software crashed."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Manager)</span> "This is unacceptable. Are we going to replace the software?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Engineer)</span> "Yes, the IT department is preparing the new patch right now."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Manager)</span> "Good. I will call the safety director to update him."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 2: Supply Chain & Logistics</span>
+                <div class="dialogue-line"><span class="speaker">Caio (Coordinator)</span> "Matheus, where is the shipment from the onshore facility?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Logistics)</span> "It is delayed. The trucks were traveling on the highway when the storm started."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Coordinator)</span> "But the refinery needs those parts today! What are you going to do?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Logistics)</span> "I will hire a private helicopter to transport the critical valves."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Coordinator)</span> "Is the CFO going to approve this cost?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Logistics)</span> "Yes, I spoke with him yesterday. He approved the emergency budget."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Coordinator)</span> "Perfect. Keep me updated."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 3: Administrative Boardroom (Future Plans)</span>
+                <div class="dialogue-line"><span class="speaker">Matheus (Director)</span> "Caio, can you present the forecast for the next quarter?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Analyst)</span> "Certainly. We are going to increase production by 8% in the pre-salt layer."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Director)</span> "How did you reach that number?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Analyst)</span> "I was analyzing the extraction data last week. The new platforms are very efficient."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Director)</span> "Did we hire the new crew for Platform P-75?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Analyst)</span> "HR is interviewing the candidates right now. We will finalize the team by Friday."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Director)</span> "Excellent job, Caio."</div>
+            </div>
+
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 4: Environmental & Safety Audit</span>
+                <div class="dialogue-line"><span class="speaker">Caio (Auditor)</span> "Matheus, I am conducting the quarterly safety audit. Answer honestly."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Supervisor)</span> "Of course. Safety is our priority."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Auditor)</span> "What were the workers doing when the leak happened on Monday?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Supervisor)</span> "They were replacing a pipe. We stopped the operation immediately."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Auditor)</span> "Did you report this to the environmental agency?"</div>
+                <div class="dialogue-line"><span class="speaker">Matheus (Supervisor)</span> "Yes, I sent the forms yesterday afternoon."</div>
+                <div class="dialogue-line"><span class="speaker">Caio (Auditor)</span> "Okay. I will review the documents and send you the final assessment."</div>
+            </div>
+            
+            <div class="dialogue-box">
+                <span class="scenario-title">Simulation 5: The Daily Stand-up (Mixed)</span>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Good morning, team. Caio, what is your status?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yesterday, I finished the contract with the new supplier."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Are they going to deliver the materials on time?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "Yes. Right now, they are loading the ships at the port."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "What were you discussing with the engineers earlier?"</div>
+                <div class="dialogue-line"><span class="speaker">Caio</span> "We were planning the maintenance schedule. I will send the Excel file later."</div>
+                <div class="dialogue-line"><span class="speaker">Matheus</span> "Great alignment. Let's get to work."</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>5. Petro-Dictionary (O&G Vocabulary)</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <div class="rule-badge">Offshore Rig: Plataforma marítima</div>
+                <div class="rule-badge">Drilling: Perfuração</div>
+                <div class="rule-badge">Pipeline: Gasoduto/Oleoduto</div>
+                <div class="rule-badge">Barrels: Barris</div>
+                <div class="rule-badge">Leak: Vazamento</div>
+                <div class="rule-badge">Supply Chain: Cadeia de suprimentos</div>
+                <div class="rule-badge">To Extract: Extrair</div>
+                <div class="rule-badge">Valves: Válvulas</div>
+                <div class="rule-badge">Gauge: Medidor/Manômetro</div>
+                <div class="rule-badge">Pre-salt: Pré-sal</div>
+            </div>
+        </section>
+
+        <button class="btn-primary" onclick="showScreen('screen-menu')">Start Practicing</button>
+    </div>
+
+    <div id="screen-menu" class="screen">
+        <button class="back-btn" onclick="showScreen('screen-lesson')">← Back to Lesson</button>
+        <h1>Training Center (O&G Edition)</h1>
+        <p>Master the timelines in the Petrobras ecosystem.</p>
+        
+        <div class="menu-dial">
+            <div class="dial-item" onclick="initPenAndPaper()">
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"/></svg>
+                <span>Pen & Paper</span>
+            </div>
+            <div class="dial-item" onclick="initMic()">
+                <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/></svg>
+                <span>Mic On</span>
+            </div>
+            <div class="dial-item" onclick="initListen()">
+                <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                <span>Listen to it</span>
+            </div>
+            <div class="dial-item" onclick="initFlashcards()">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/></svg>
+                <span>Flashcards</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-exercise" class="screen">
+        <button class="back-btn" onclick="showScreen('screen-menu')">← Exit Mode</button>
+        <h1 id="exercise-title" style="margin-bottom: 20px;">Exercise</h1>
+        <div id="exercise-content"></div>
+    </div>
+
+    <script>
+        // Data for Pen & Paper and Flashcards (Module 4 Focus: O&G, Past Continuous, Full Review)
+        const studyData = [
+            { q: "We ___ (drill) the new well when the alarm rang.", c: "were drilling", w: "drilled" },
+            { q: "The engineers ___ (inspect) the pipeline right now.", c: "are inspecting", w: "were inspecting" },
+            { q: "The offshore rig ___ (extract) 10,000 barrels yesterday.", c: "extracted", w: "extracts" },
+            { q: "Look at the pressure gauge! It ___ (explode).", c: "is going to explode", w: "will explode" },
+            { q: "I ___ (send) the environmental report to HR last week.", c: "sent", w: "was sending" },
+            { q: "I ___ (analyze) the supply chain data when the system crashed.", c: "was analyzing", w: "am analyzing" },
+            { q: "Don't worry, I ___ (call) the supplier immediately.", c: "will call", w: "am going to call" },
+            { q: "The company ___ (build) a new refinery in 2026. It is official.", c: "is going to build", w: "will build" },
+            { q: "We ___ (replace) the valves every six months.", c: "replace", w: "replaced" },
+            { q: "They ___ (load) the ships at the port at this moment.", c: "are loading", w: "were loading" },
+            { q: "She ___ (monitor) the gauges when the pressure dropped.", c: "was monitoring", w: "monitors" },
+            { q: "The logistics team ___ (hire) a helicopter yesterday.", c: "hired", w: "will hire" }
+        ];
+
+        // Speech Phrases strictly tailored to Petrobras / O&G context
+        const speechPhrases = [
+            "We were drilling the new well when the alarm rang.",
+            "The offshore rig extracts ten thousand barrels.",
+            "They are going to build a new refinery.",
+            "I will shut down the main valve immediately.",
+            "The trucks were traveling when the storm started.",
+            "I was analyzing the supply chain report.",
+            "The engineering team inspects the pipelines weekly.",
+            "We extracted fifteen thousand barrels yesterday.",
+            "The IT department is preparing the new patch right now.",
+            "I will hire a private helicopter.",
+            "We are going to increase production by eight percent.",
+            "They were replacing a pipe when it happened.",
+            "I sent the forms yesterday afternoon.",
+            "They are loading the ships at the port.",
+            "I will call the safety director.",
+            "The pressure is too high.",
+            "The board approved the emergency budget.",
+            "Safety is our top priority.",
+            "We stopped the operation immediately.",
+            "The new platforms in the pre salt are very efficient."
+        ];
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'en-US';
+            msg.rate = 0.85;
+            window.speechSynthesis.speak(msg);
+        }
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.speechSynthesis.cancel();
+        }
+
+        function cleanString(str) {
+            return str.toLowerCase().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        // --- PEN AND PAPER ---
+        function initPenAndPaper() {
+            showScreen('screen-exercise');
+            const item = studyData[Math.floor(Math.random()*studyData.length)];
+            document.getElementById('exercise-title').innerText = "Pen & Paper";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card">
+                    <p style="color: var(--slate-600); font-weight: 600;">Complete the sentence (Focus on the Timeline):</p>
+                    <div class="active-target">${item.q.replace('___', '_______')}</div>
+                    <input type="text" id="pen-input" class="text-input-base" autocomplete="off">
+                    <div id="pen-feedback" class="feedback-area"></div>
+                    <button class="btn-primary" onclick="checkPen('${item.c}')">Validate</button>
+                </div>
+            `;
+            setTimeout(() => document.getElementById('pen-input').focus(), 100);
+        }
+
+        function checkPen(correct) {
+            const val = document.getElementById('pen-input').value.toLowerCase().trim();
+            const fb = document.getElementById('pen-feedback');
+            if(val === correct.toLowerCase()) {
+                fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                fb.innerText = "EXCELLENT! Correct."; 
+                setTimeout(initPenAndPaper, 1200);
+            } else {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerText = "TRY AGAIN. Think about the timeline rule."; 
+            }
+        }
+
+        // --- MIC ON (STT) ---
+        function initMic() {
+            showScreen('screen-exercise');
+            const target = speechPhrases[Math.floor(Math.random()*speechPhrases.length)];
+            const displayTarget = target.replace(/[.,]/g, '');
+            
+            document.getElementById('exercise-title').innerText = "Mic On";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card" style="text-align:center;">
+                    <p style="color: var(--slate-600); font-weight: 600;">Read aloud clearly (Boardroom Voice):</p>
+                    <div class="active-target">${displayTarget}</div>
+                    <button id="mic-btn" style="background:var(--navy); color:white; border:none; width:80px; height:80px; border-radius:50%; margin:20px 0; cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" onclick="runSTT('${target}')">
+                        <svg viewBox="0 0 24 24" style="width:30px; fill:currentColor;"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/></svg>
+                    </button>
+                    <div id="mic-feedback" class="feedback-area" style="background: #f1f5f9;">Tap the mic and speak<br><small style="font-weight:normal;">(Ensure you are running this on a local server)</small></div>
+                </div>
+            `;
+        }
+
+        function runSTT(target) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if(!SpeechRecognition) {
+                document.getElementById('mic-feedback').innerHTML = "Browser does not support microphone access. Try Chrome.";
+                return;
+            }
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            
+            const fb = document.getElementById('mic-feedback');
+            fb.innerText = "Listening... Speak now!";
+            fb.style.backgroundColor = "#e0f2fe"; fb.style.color = "var(--business-blue)";
+            
+            recognition.start();
+            
+            recognition.onresult = (e) => {
+                const transcript = e.results[0][0].transcript;
+                const cleanTrans = cleanString(transcript);
+                const cleanTarg = cleanString(target);
+                
+                const targetWords = cleanTarg.split(' ');
+                let matchCount = 0;
+                targetWords.forEach(word => {
+                    if(cleanTrans.includes(word)) matchCount++;
+                });
+                
+                const matchPercentage = matchCount / targetWords.length;
+                
+                if(matchPercentage >= 0.75 || cleanTrans === cleanTarg) {
+                    fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                    fb.innerText = "Perfect clarity! Loading next..."; 
+                    setTimeout(initMic, 1500);
+                } else {
+                    fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                    fb.innerHTML = `I heard: <strong>"${transcript}"</strong>.<br>Try to speak clearer.`; 
+                }
+            };
+            
+            recognition.onerror = (e) => {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerText = "Microphone error: " + e.error;
+            };
+        }
+
+        // --- FLASHCARDS (TINDER SWIPE) ---
+        function initFlashcards() {
+            showScreen('screen-exercise');
+            document.getElementById('exercise-title').innerText = "Flashcards";
+            loadFlashCard();
+        }
+
+        function loadFlashCard() {
+            const item = studyData[Math.floor(Math.random()*studyData.length)];
+            const isLeftCorrect = Math.random() > 0.5;
+            
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="flash-wrapper" id="swipe-area">
+                    <div class="swipe-hint">
+                        <span>← ${isLeftCorrect ? item.w : item.c}</span>
+                        <span>${!isLeftCorrect ? item.w : item.c} →</span>
+                    </div>
+                    <div class="flash-card" id="card">
+                        <div class="flash-word">${item.q.replace('___', ' [ ? ] ')}</div>
+                        <p style="font-size:12px; color:var(--slate-600); font-weight:bold;">SWIPE TO THE CORRECT VERB</p>
+                    </div>
+                </div>
+                <div id="flash-feedback" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; opacity:0; transition:0.3s; display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:900; color:white;"></div>
+            `;
+            setupSwipe('card', isLeftCorrect ? 'left' : 'right');
+        }
+
+        function setupSwipe(id, correctSide) {
+            const card = document.getElementById(id);
+            let startX = 0;
+            
+            card.addEventListener('touchstart', e => { startX = e.touches[0].clientX; card.style.transition = 'none'; });
+            card.addEventListener('mousedown', e => { startX = e.clientX; card.style.transition = 'none'; card.dataset.down = 'true'; });
+            
+            const handleMove = (x) => {
+                let move = x - startX;
+                card.style.transform = `translateX(${move}px) rotate(${move/15}deg)`;
+            };
+            
+            card.addEventListener('touchmove', e => handleMove(e.touches[0].clientX));
+            card.addEventListener('mousemove', e => { if(card.dataset.down === 'true') handleMove(e.clientX); });
+            
+            const handleEnd = (x) => {
+                card.dataset.down = 'false';
+                card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                let diff = x - startX;
+                if(Math.abs(diff) > 80) {
+                    let side = diff > 0 ? 'right' : 'left';
+                    handleFlashResult(side === correctSide);
+                } else {
+                    card.style.transform = `translateX(0) rotate(0)`;
+                }
+            };
+
+            card.addEventListener('touchend', e => handleEnd(e.changedTouches[0].clientX));
+            card.addEventListener('mouseup', e => handleEnd(e.clientX));
+            card.addEventListener('mouseleave', e => { if(card.dataset.down === 'true') handleEnd(e.clientX); });
+        }
+
+        function handleFlashResult(isCorrect) {
+            const fb = document.getElementById('flash-feedback');
+            fb.style.backgroundColor = isCorrect ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)";
+            fb.innerText = isCorrect ? "CORRECT!" : "WRONG!";
+            fb.style.opacity = "1";
+            setTimeout(() => {
+                fb.style.opacity = "0";
+                loadFlashCard();
+            }, 800);
+        }
+
+        // --- LISTEN TO IT (Dictation) ---
+        let currentDictationTarget = "";
+
+        function initListen() {
+            showScreen('screen-exercise');
+            currentDictationTarget = speechPhrases[Math.floor(Math.random()*speechPhrases.length)];
+            
+            document.getElementById('exercise-title').innerText = "Dictation";
+            document.getElementById('exercise-content').innerHTML = `
+                <div class="card" style="text-align:center;">
+                    <p style="color: var(--slate-600); font-weight: 600; margin-bottom:20px;">Listen closely to the operations report. Type exactly what you hear.</p>
+                    
+                    <button class="btn-primary" style="margin: 0 auto 30px auto; width: 80%;" onclick="speak('${currentDictationTarget}')">
+                        <svg viewBox="0 0 24 24" style="width:24px; fill:currentColor; margin-right:10px;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                        Play Audio
+                    </button>
+                    
+                    <input type="text" id="dictation-input" class="text-input-base" placeholder="Type the report here..." autocomplete="off">
+                    
+                    <div id="dictation-fb" class="feedback-area" style="margin-top:20px;"></div>
+                    
+                    <button class="btn-primary" onclick="checkDictation()" style="margin-top: 15px; background: var(--navy);">Submit Answer</button>
+                </div>
+            `;
+            setTimeout(() => document.getElementById('dictation-input').focus(), 100);
+        }
+
+        function checkDictation() {
+            const inputVal = document.getElementById('dictation-input').value;
+            const fb = document.getElementById('dictation-fb');
+            
+            const cleanInput = cleanString(inputVal);
+            const cleanTarget = cleanString(currentDictationTarget);
+            
+            if(cleanInput === "") {
+                fb.style.backgroundColor = "#fef3c7"; fb.style.color = "#d97706";
+                fb.innerText = "Please type something before submitting.";
+                return;
+            }
+
+            if(cleanInput === cleanTarget) {
+                fb.style.backgroundColor = "#d1fae5"; fb.style.color = "var(--success)";
+                fb.innerText = "SHARP EAR! Perfect match."; 
+                setTimeout(initListen, 1800);
+            } else {
+                fb.style.backgroundColor = "#fee2e2"; fb.style.color = "var(--danger)";
+                fb.innerHTML = `ALMOST! The correct phrase was:<br><strong>"${currentDictationTarget}"</strong>`; 
+            }
+        }
+    </script>
+</body>
+</html>
